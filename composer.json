@@ -9,10 +9,16 @@
     },
     "authors": [
         {
-            "name": "VisaAF",
+            "name": "Santiago Farinola",
             "email": "farinolasantiago@outlook.com"
+        },
+        {
+            "name": "Vanesa Cadin",
+            "email": "vanesagcadin@hotmail.com"
         }
     ],
     "minimum-stability": "beta",
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
 }
