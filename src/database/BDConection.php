@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Database;
+namespace src\database;
 
 use PDO;
 use PDOException;
-use App\Exceptions\DatabaseException;
+use src\exceptions\DatabaseException;
 
 class BDConection
 {
@@ -25,7 +25,7 @@ class BDConection
 
     }
 
-    public static function getInstancia()
+    public static function getInstancia(): self
     {
         if (self::$instancia === null) {
             self::$instancia = new self();
