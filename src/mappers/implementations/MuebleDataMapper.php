@@ -2,7 +2,6 @@
 
 namespace src\mappers\implementations;
 
-
 use PDO;
 use src\database\BDConection;
 use src\mappers\interfaces\MuebleMD;
@@ -21,7 +20,7 @@ class MuebleDataMapper implements MuebleMD
     public function findByID(int $muebleId): Mueble
     {
         try {
-            $query = "";
+            $query = "SELECT * FROM MUEBLE WHERE ID = ?";
             $stmt = $this->conexion->prepare($query);
             $stmt->bindParam(':id', $muebleId, PDO::PARAM_INT);
             $stmt->execute();
