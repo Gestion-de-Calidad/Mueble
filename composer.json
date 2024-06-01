@@ -1,0 +1,18 @@
+{
+    "name": "gestioncalidad/mueble",
+    "description": "Proyecto desarrollado para la materia Gestion de Calidad UNPAUARG",
+    "type": "proyect",
+    "autoload": {
+        "psr-4": {
+            "Gestioncalidad\\Mueble\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VisaAF",
+            "email": "farinolasantiago@outlook.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
