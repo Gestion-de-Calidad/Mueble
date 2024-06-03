@@ -1,20 +1,20 @@
 <?php
 
 
-namespace src\database;
+namespace App\Core\DataBase;
 
 use PDO;
 use PDOException;
-use src\exceptions\DatabaseException;
+use App\Core\Exceptions\DatabaseException;
 
 class BDConection
 {
     private static $instancia = null;
     private $conexion;
 
-    private function __construct()
+    public function __construct()
     {
-        $config = require __DIR__ . '/../../config/database.php';
+        $config = require __DIR__ . '/../../../config/database.php';
 
         try {
             $this->conexion = new PDO($config['dsn'], $config['usuario'], $config['contraseña']);
@@ -25,7 +25,7 @@ class BDConection
 
     }
 
-    public static function getInstancia(): self
+    public static function getInstancia()
     {
         if (self::$instancia === null) {
             self::$instancia = new self();
