@@ -1,38 +1,26 @@
 <?php
 
-namespace src\mappers\implementations;
+namespace App\Core\Mappers\Implementations;
 
 use PDO;
-use src\database\BDConection;
-use src\mappers\interfaces\MuebleMD;
-use src\models\Mueble;
-use src\exceptions\DatabaseException;
+use App\Core\DataBase\BDConection;
+use App\Core\Models\Mueble;
+use App\Core\Exceptions\DatabaseException;
 
-class MuebleDataMapper implements MuebleMD
+class MuebleDataMapper
 {
-    private BDConection $conexion;
+    private  $conection;
+
 
     public function __construct()
     {
-        $this->conexion = BDConection::getInstancia();
+        $this->conection = new BDConection();
     }
+
 
     public function findByID(int $muebleId): Mueble
     {
-        try {
-            $query = "SELECT * FROM MUEBLE WHERE ID = ?";
-            $stmt = $this->conexion->prepare($query);
-            $stmt->bindParam(':id', $muebleId, PDO::PARAM_INT);
-            $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($data) {
-                return new Mueble($data['id'], $data['nombre'], $data['descripcion'], $data['medida'], $data['largo'], $data['ancho']);
-            }
-
-        } catch (PDOException $e) {
-            throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
-        }
+        // TODO: Implement insert() method.
     }
 
     public function insert(Mueble $mueble): bool

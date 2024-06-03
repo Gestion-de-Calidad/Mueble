@@ -1,32 +1,29 @@
 <?php
 
-namespace src\services\implementations;
+namespace App\Core\Services\Implementations;
 
-use src\mappers\implementations\MuebleDataMapper;
-use src\models\Mueble;
-use src\services\interfaces\MuebleServiceInterface;
+use App\Core\Mappers\Implementations\MuebleDataMapper;
+use App\Core\Models\Mueble;
 
-class MuebleServiceImpl implements MuebleServiceInterface
+
+class MuebleServiceImpl
 {
     private $mapper;
 
+    /**
+     * MuebleServiceImpl constructor.
+     * @param MuebleDataMapper $dataMapper
+     */
     public function __construct()
     {
         $this->mapper = new MuebleDataMapper();
     }
 
-    public function createMueble(string $nombre,
-                                 string $descripcion,
-                                 float $medida,
-                                 float $largo,
-                                 float $ancho): bool
-    {
-        // TODO: Implement createMueble() method.
-    }
 
-    public function getMuebleById(int $id): Mueble
+    public function getMuebleById(int $id)
     {
-        return $this->mapper->findByID($id);
+        $this->mapper->findByID($id);
+        // TODO: Implement getMuebleById() method.
     }
 
     public function getAllMuebles(): array
@@ -34,12 +31,12 @@ class MuebleServiceImpl implements MuebleServiceInterface
         // TODO: Implement getAllMuebles() method.
     }
 
-    public function updateMueble(int $id,
-                                 string $nombre,
-                                 string $descripcion,
-                                 float $medida,
-                                 float $largo,
-                                 float $ancho): bool
+    public function insertMueble()
+    {
+        // TODO: Implement insertMueble() method.
+    }
+
+    public function updateMueble(): bool
     {
         // TODO: Implement updateMueble() method.
     }

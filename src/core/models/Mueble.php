@@ -1,89 +1,187 @@
 <?php
 
-namespace src\models;
+namespace App\Core\Models;
 
 class Mueble
 {
     private int $id;
     private ?string $nombre;
     private ?string $descripcion;
+    private float $precio;
+    private int $stock;
     private float $medida;
     private float $largo;
     private float $ancho;
+    private ?Categoria $categoria;
 
-    public function __construct(int $id,
-                                string $nombre,
-                                string $descripcion,
-                                float $medida,
-                                float $largo,
-                                float $ancho)
+    /**
+     * Mueble constructor.
+     * @param int $id
+     * @param string|null $nombre
+     * @param string|null $descripcion
+     * @param float $precio
+     * @param int $stock
+     * @param float $medida
+     * @param float $largo
+     * @param float $ancho
+     * @param Categoria $categoria
+     */
+    public function __construct(int $id, ?string $nombre, ?string $descripcion, float $precio, int $stock, float $medida, float $largo, float $ancho, Categoria $categoria)
     {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
+        $this->precio = $precio;
+        $this->stock = $stock;
         $this->medida = $medida;
         $this->largo = $largo;
         $this->ancho = $ancho;
+        $this->categoria = $categoria;
     }
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param int $id
+     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    public function getNombre(): string
+    /**
+     * @return string|null
+     */
+    public function getNombre(): ?string
     {
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): void
+    /**
+     * @param string|null $nombre
+     */
+    public function setNombre(?string $nombre): void
     {
         $this->nombre = $nombre;
     }
 
-    public function getDescripcion(): string
+    /**
+     * @return string|null
+     */
+    public function getDescripcion(): ?string
     {
         return $this->descripcion;
     }
 
-    public function setDescripcion(string $descripcion): void
+    /**
+     * @param string|null $descripcion
+     */
+    public function setDescripcion(?string $descripcion): void
     {
         $this->descripcion = $descripcion;
     }
 
+    /**
+     * @return float
+     */
+    public function getPrecio(): float
+    {
+        return $this->precio;
+    }
+
+    /**
+     * @param float $precio
+     */
+    public function setPrecio(float $precio): void
+    {
+        $this->precio = $precio;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStock(): int
+    {
+        return $this->stock;
+    }
+
+    /**
+     * @param int $stock
+     */
+    public function setStock(int $stock): void
+    {
+        $this->stock = $stock;
+    }
+
+    /**
+     * @return float
+     */
     public function getMedida(): float
     {
         return $this->medida;
     }
 
+    /**
+     * @param float $medida
+     */
     public function setMedida(float $medida): void
     {
         $this->medida = $medida;
     }
 
+    /**
+     * @return float
+     */
     public function getLargo(): float
     {
         return $this->largo;
     }
 
+    /**
+     * @param float $largo
+     */
     public function setLargo(float $largo): void
     {
         $this->largo = $largo;
     }
 
+    /**
+     * @return float
+     */
     public function getAncho(): float
     {
         return $this->ancho;
     }
 
+    /**
+     * @param float $ancho
+     */
     public function setAncho(float $ancho): void
     {
         $this->ancho = $ancho;
     }
+
+    /**
+     * @return Categoria|null
+     */
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param Categoria|null $categoria
+     */
+    public function setCategoria(?Categoria $categoria): void
+    {
+        $this->categoria = $categoria;
+    }
+
 
 }
