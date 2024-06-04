@@ -12,7 +12,7 @@ class Mueble
     private float $medida;
     private float $largo;
     private float $ancho;
-    private ?Categoria $categoria;
+    //private ?Categoria $categoria;
 
     /**
      * Mueble constructor.
@@ -149,21 +149,21 @@ class Mueble
         $this->ancho = $ancho;
     }
 
-    /**
+/*    /**
      * @return Categoria|null
      */
-    public function getCategoria(): ?Categoria
+/*    public function getCategoria(): ?Categoria
     {
         return $this->categoria;
     }
-
-    /**
+*/
+/*    /**
      * @param Categoria|null $categoria
      */
-    public function setCategoria(?Categoria $categoria): void
+/*    public function setCategoria(?Categoria $categoria): void
     {
         $this->categoria = $categoria;
     }
-
+*/
 
 }

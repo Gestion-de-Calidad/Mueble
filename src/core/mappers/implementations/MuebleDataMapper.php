@@ -3,8 +3,12 @@
 namespace App\Core\Mappers\Implementations;
 
 use PDO;
+$droot=$_SERVER['DOCUMENT_ROOT'];
+include_once $droot . '/Mueble/src/core/database/BDConection.php';
 use App\Core\DataBase\BDConection;
+include_once $droot . '/Mueble/src/core/models/Mueble.php';
 use App\Core\Models\Mueble;
+include_once $droot . '/Mueble/src/core/exceptions/DatabaseException.php';
 use App\Core\Exceptions\DatabaseException;
 
 class MuebleDataMapper
@@ -70,7 +74,6 @@ class MuebleDataMapper
 
             if (!$result->execute()) {
                 $success = false;
-                return $success;
             }
 
             if ($success) {
@@ -107,11 +110,13 @@ class MuebleDataMapper
 
             if (!$result->execute()) {
                 $success = false;
-                return $success;
             }
 
             if ($success) {
                 $stmt->commit();
+                if ($result->rowCount() < 1) {
+                    $success = false;
+                }
             } else {
                 $stmt->rollBack();
             }
@@ -132,18 +137,22 @@ class MuebleDataMapper
 
             $query = "DELETE MUEBLES WHERE mueble_id = :mueble_id";
             $result = $stmt->prepare($query);
-            $result->bindParam('categoria_id', $mueble_id);
+            $result->bindParam('mueble_id', $mueble_id);
+            $data = $result->execute();
 
             if (!$result->execute()) {
                 $success = false;
-                return $success;
             }
 
             if ($success) {
                 $stmt->commit();
+                if ($result->rowCount() < 1) {
+                    $success = false;
+                }
             } else {
                 $stmt->rollBack();
             }
+
             return $success;
 
         } catch (PDOException $e) {

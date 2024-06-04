@@ -2,9 +2,11 @@
 
 namespace App\Core\Services\Implementations;
 
+$droot=$_SERVER['DOCUMENT_ROOT'];
+include_once $droot . '/Mueble/src/core/mappers/implementations/MuebleDataMapper.php';
 use App\Core\Mappers\Implementations\MuebleDataMapper;
+include_once $droot . '/Mueble/src/core/models/Mueble.php';
 use App\Core\Models\Mueble;
-
 
 class MuebleServiceImpl
 {
@@ -29,19 +31,20 @@ class MuebleServiceImpl
         return $this->mapper->findAll();
     }
 
-    public function insertMueble()
+    public function insertMueble(Mueble $mueble): bool
     {
-        // TODO: Implement insertMueble() method.
+
+        return $this->mapper->insert($mueble);
     }
 
-    public function updateMueble(): bool
+    public function updateMueble(Mueble $mueble): bool
     {
-        // TODO: Implement updateMueble() method.
+        return $this->mapper->update($mueble);
     }
 
-    public function deleteMueble(int $id): bool
+    public function deleteMueble(int $mueble_id): bool
     {
-        // TODO: Implement deleteMueble() method.
+        return $this->mapper->delete($mueble_id);
     }
 
 }
