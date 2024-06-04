@@ -12,15 +12,9 @@ class Categoria
 
     /**
      * Categoria constructor.
-     * @param int $id
-     * @param string $nombre
-     * @param string|null $descripcion
      */
-    public function __construct(int $id, string $nombre, ?string $descripcion)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
     }
 
     /**

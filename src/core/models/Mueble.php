@@ -4,7 +4,7 @@ namespace App\Core\Models;
 
 class Mueble
 {
-    private int $id;
+    private int $mueble_id;
     private ?string $nombre;
     private ?string $descripcion;
     private float $precio;
@@ -16,43 +16,25 @@ class Mueble
 
     /**
      * Mueble constructor.
-     * @param int $id
-     * @param string|null $nombre
-     * @param string|null $descripcion
-     * @param float $precio
-     * @param int $stock
-     * @param float $medida
-     * @param float $largo
-     * @param float $ancho
-     * @param Categoria $categoria
      */
-    public function __construct(int $id, ?string $nombre, ?string $descripcion, float $precio, int $stock, float $medida, float $largo, float $ancho, Categoria $categoria)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->precio = $precio;
-        $this->stock = $stock;
-        $this->medida = $medida;
-        $this->largo = $largo;
-        $this->ancho = $ancho;
-        $this->categoria = $categoria;
     }
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getMuebleId(): int
     {
-        return $this->id;
+        return $this->mueble_id;
     }
 
     /**
-     * @param int $id
+     * @param int $mueble_id
      */
-    public function setId(int $id): void
+    public function setMuebleId(int $mueble_id): void
     {
-        $this->id = $id;
+        $this->mueble_id = $mueble_id;
     }
 
     /**
