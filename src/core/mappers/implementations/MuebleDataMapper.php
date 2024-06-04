@@ -6,7 +6,6 @@ use PDO;
 use App\Core\DataBase\BDConection;
 use App\Core\Models\Mueble;
 use App\Core\Exceptions\DatabaseException;
-use phpDocumentor\Reflection\Types\This;
 
 class MuebleDataMapper
 {
