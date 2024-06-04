@@ -20,10 +20,9 @@ class MuebleServiceImpl
     }
 
 
-    public function getMuebleById(int $id)
+    public function getMuebleById(int $id): Mueble
     {
-        $this->mapper->findByID($id);
-        // TODO: Implement getMuebleById() method.
+        return $this->mapper->findByID($id);
     }
 
     public function getAllMuebles(): array
