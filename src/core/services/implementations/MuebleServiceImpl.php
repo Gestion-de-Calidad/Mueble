@@ -19,7 +19,6 @@ class MuebleServiceImpl
         $this->mapper = new MuebleDataMapper();
     }
 
-
     public function getMuebleById(int $id): Mueble
     {
         return $this->mapper->findByID($id);
@@ -27,7 +26,7 @@ class MuebleServiceImpl
 
     public function getAllMuebles(): array
     {
-        // TODO: Implement getAllMuebles() method.
+        return $this->mapper->findAll();
     }
 
     public function insertMueble()
