@@ -21,16 +21,15 @@ class MuebleDataMapper
     public function findByID(int $muebleId): Mueble
     {
         try {
-            $stmt = $this->conection->getInstancia();
-            $query = "SELECT * FROM MUEBLE WHERE id = :id";
-            $result = $stmt->prepare($query);
-            $result->bindParam('id', $muebleId, PDO::PARAM_INT);
-            $result->execute();
-            $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-            if(data){
-                return new Mueble($data['id'], $data['nombre'], $data['descripcion'],$data['precio'],$data['stock'], $data['medida'], $data['largo'], $data['ancho']);
-            }
+            $stmt = $this->conection->getInstancia();
+            $query = "SELECT * FROM MUEBLES WHERE mueble_id = :mueble_id";
+            $result = $stmt->prepare($query);
+            $result->bindParam('mueble_id', $muebleId, PDO::PARAM_INT);
+            $result->execute();
+            $result->setFetchMode(PDO::FETCH_CLASS, Mueble::class);
+            $mueble = $result->fetch();
+            return $mueble;
 
         } catch (PDOException $e) {
             throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
