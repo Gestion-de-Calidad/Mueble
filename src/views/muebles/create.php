@@ -1,10 +1,6 @@
 <?php
-session_start(); // Iniciar sesión para usar mensajes flash
 
-$droot = $_SERVER['DOCUMENT_ROOT'];
-include_once $droot . '/Mueble/src/core/services/implementations/MuebleServiceImpl.php';
-include_once $droot . '/Mueble/src/core/models/Mueble.php';
-
+session_start();
 use App\Core\Services\Implementations\MuebleServiceImpl;
 use App\Core\Models\Mueble;
 
