@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Mappers\Implementations;
+namespace Mappers;
 
 use PDO;
-use App\Core\DataBase\BDConection;
-use App\Core\Models\Mueble;
-use App\Core\Exceptions\DatabaseException;
+use DataBase\BDConection;
+use Models\Mueble;
+use Exceptions\DatabaseException;
 
 class MuebleDataMapper
 {

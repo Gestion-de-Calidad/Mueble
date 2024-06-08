@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Services\Implementations;
+namespace Services;
 
-use App\Core\Mappers\Implementations\MuebleDataMapper;
-use App\Core\Models\Mueble;
+use Mappers\MuebleDataMapper;
+use Models\Mueble;
 
 class MuebleServiceImpl
 {

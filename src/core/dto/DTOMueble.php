@@ -1,6 +1,6 @@
 <?php
 
-namespace src\dto;
+namespace Dto;
 
 class DTOMueble
 {
