@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-use App\Core\Services\Implementations\MuebleServiceImpl;
-use App\Core\Models\Mueble;
+use Services\MuebleServiceImpl;
+use Models\Mueble;
 
 define('REDIRECT_URL', '../../../public/index.php');
 

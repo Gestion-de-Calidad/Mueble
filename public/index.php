@@ -2,7 +2,7 @@
 #$droot = $_SERVER['DOCUMENT_ROOT'];
 
 require_once '../vendor/autoload.php';
-use App\Core\Services\Implementations\MuebleServiceImpl;
+use Services\MuebleServiceImpl;
 
 $muebleService = new MuebleServiceImpl();
 $registros = $muebleService->getAllMuebles();
