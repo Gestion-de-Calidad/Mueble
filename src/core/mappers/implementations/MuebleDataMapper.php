@@ -3,12 +3,8 @@
 namespace App\Core\Mappers\Implementations;
 
 use PDO;
-$droot=$_SERVER['DOCUMENT_ROOT'];
-include_once $droot . '/Mueble/src/core/database/BDConection.php';
 use App\Core\DataBase\BDConection;
-include_once $droot . '/Mueble/src/core/models/Mueble.php';
 use App\Core\Models\Mueble;
-include_once $droot . '/Mueble/src/core/exceptions/DatabaseException.php';
 use App\Core\Exceptions\DatabaseException;
 
 class MuebleDataMapper
