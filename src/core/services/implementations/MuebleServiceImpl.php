@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Core\Services\Implementations;
+namespace Services;
 
-$droot=$_SERVER['DOCUMENT_ROOT'];
-include_once $droot . '/Mueble/src/core/mappers/implementations/MuebleDataMapper.php';
-use App\Core\Mappers\Implementations\MuebleDataMapper;
-include_once $droot . '/Mueble/src/core/models/Mueble.php';
-use App\Core\Models\Mueble;
+use Mappers\MuebleDataMapper;
+use Models\Mueble;
 
 class MuebleServiceImpl
 {

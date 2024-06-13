@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Core\DataBase;
+namespace DataBase;
 
 use PDO;
 use PDOException;
-use App\Core\Exceptions\DatabaseException;
+use Exceptions\DatabaseException;
 
 class BDConection
 {

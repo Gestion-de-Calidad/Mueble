@@ -4,7 +4,12 @@
     "type": "proyect",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "DatabBase\\": "src/core/database",
+            "Dto\\": "src/core/dto",
+            "Exceptions\\": "src/core/exceptions",
+            "Mappers\\": "src/core/mappers/implementations",
+            "Models\\": "src/core/models",
+            "Services\\": "src/core/services/implementations"
         }
     },
     "autoload-dev": {

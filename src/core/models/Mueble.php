@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Models;
+namespace Models;
 
 class Mueble
 {

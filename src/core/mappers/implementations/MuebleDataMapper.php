@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Core\Mappers\Implementations;
+namespace Mappers;
 
 use PDO;
-$droot=$_SERVER['DOCUMENT_ROOT'];
-include_once $droot . '/Mueble/src/core/database/BDConection.php';
-use App\Core\DataBase\BDConection;
-include_once $droot . '/Mueble/src/core/models/Mueble.php';
-use App\Core\Models\Mueble;
-include_once $droot . '/Mueble/src/core/exceptions/DatabaseException.php';
-use App\Core\Exceptions\DatabaseException;
+use DataBase\BDConection;
+use Models\Mueble;
+use Exceptions\DatabaseException;
 
 class MuebleDataMapper
 {

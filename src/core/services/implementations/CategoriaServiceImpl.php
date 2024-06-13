@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Services\Implementations;
+namespace Services;
 
-use App\Core\Mappers\Implementations\CategoriaDataMapper;
-use App\Core\Models\Categoria;
+use Mappers\CategoriaDataMapper;
+use Models\Categoria;
 
 class CategoriaServiceImpl
 {
