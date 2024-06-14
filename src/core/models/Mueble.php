@@ -5,21 +5,34 @@ namespace Models;
 class Mueble
 {
     private int $mueble_id;
-    private ?string $nombre;
+    private string $nombre;
     private ?string $descripcion;
     private float $precio;
     private int $stock;
-    private float $medida;
     private float $largo;
     private float $ancho;
-    //private ?Categoria $categoria;
+    private ?float $medida;
 
     /**
      * Mueble constructor.
+     * @param int $mueble_id
+     * @param string $nombre
+     * @param string|null $descripcion
+     * @param float $precio
+     * @param int $stock
+     * @param float $largo
+     * @param float $ancho
      */
-    public function __construct()
+    public function __construct(string $nombre, ?string $descripcion, float $precio, int $stock, float $largo, float $ancho)
     {
+        $this->nombre = $nombre;
+        $this->descripcion = $descripcion;
+        $this->precio = $precio;
+        $this->stock = $stock;
+        $this->largo = $largo;
+        $this->ancho = $ancho;
     }
+
 
     /**
      * @return int
@@ -101,21 +114,6 @@ class Mueble
         $this->stock = $stock;
     }
 
-    /**
-     * @return float
-     */
-    public function getMedida(): float
-    {
-        return $this->medida;
-    }
-
-    /**
-     * @param float $medida
-     */
-    public function setMedida(float $medida): void
-    {
-        $this->medida = $medida;
-    }
 
     /**
      * @return float
@@ -149,21 +147,21 @@ class Mueble
         $this->ancho = $ancho;
     }
 
-/*    /**
-     * @return Categoria|null
+    /**
+     * @return float|null
      */
-/*    public function getCategoria(): ?Categoria
+    public function getMedida(): ?float
     {
-        return $this->categoria;
+        return $this->medida;
     }
-*/
-/*    /**
-     * @param Categoria|null $categoria
+
+    /**
+     * @param float|null  $medida
      */
-/*    public function setCategoria(?Categoria $categoria): void
+    public function setMedida(?float $medida): void
     {
-        $this->categoria = $categoria;
+        $this->medida = $medida;
     }
-*/
+
 
 }

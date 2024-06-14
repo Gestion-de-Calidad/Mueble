@@ -30,17 +30,19 @@ class MuebleServiceImpl
 
     public function insertMueble(Mueble $mueble): bool
     {
-
+        $mueble->setMedida($mueble->getAncho() * $mueble->getLargo());
         return $this->mapper->insert($mueble);
     }
 
     public function updateMueble(Mueble $mueble): bool
     {
+        $mueble->setMedida($mueble->getAncho() * $mueble->getLargo());
         return $this->mapper->update($mueble);
     }
 
     public function deleteMueble(int $mueble_id): bool
     {
+        $this->getMuebleById($mueble_id);
         return $this->mapper->delete($mueble_id);
     }
 

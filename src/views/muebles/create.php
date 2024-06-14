@@ -30,7 +30,6 @@ function updateMuebleFromPost($mueble)
     $mueble->setDescripcion($_POST['descripcion']);
     $mueble->setPrecio((float)$_POST['precio']);
     $mueble->setStock((int)$_POST['stock']);
-    $mueble->setMedida((float)$_POST['medida']);
     $mueble->setLargo((float)$_POST['largo']);
     $mueble->setAncho((float)$_POST['ancho']);
 }
@@ -81,10 +80,10 @@ function updateMuebleFromPost($mueble)
                             <label for="stock">Stock</label>
                             <input type="number" class="form-control" id="stock" name="stock" required>
                         </div>
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label for="medida">Medida</label>
                             <input type="number" step="0.01" class="form-control" id="medida" name="medida" required>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="largo">Largo</label>
                             <input type="number" step="0.01" class="form-control" id="largo" name="largo" required>

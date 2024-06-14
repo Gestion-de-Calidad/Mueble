@@ -57,7 +57,7 @@ class MuebleDataMapper
             $stmt = $this->conection->getInstancia();
             $stmt->beginTransaction();
 
-            $query = "INSERT INTO MUEBLES (nombre, descripcion, precio, stock, medida, largo, ancho, categoria_id) VALUES (:nombre, :descripcion, :precio, :stock, :medida, :largo, :ancho, :categoria_id)";
+            $query = "INSERT INTO MUEBLES (nombre, descripcion, precio, stock, medida, largo, ancho) VALUES (:nombre, :descripcion, :precio, :stock, :medida, :largo, :ancho)";
             $result = $stmt->prepare($query);
             $result->bindValue('nombre', $mueble->getNombre());
             $result->bindValue('descripcion', $mueble->getDescripcion());
@@ -66,7 +66,6 @@ class MuebleDataMapper
             $result->bindValue('medida', $mueble->getMedida());
             $result->bindValue('largo', $mueble->getLargo());
             $result->bindValue('ancho', $mueble->getAncho());
-            $result->bindValue('categoria_id', $mueble->getCategoria()->getId());
 
             if (!$result->execute()) {
                 $success = false;
@@ -101,7 +100,6 @@ class MuebleDataMapper
             $result->bindValue('medida', $mueble->getMedida());
             $result->bindValue('largo', $mueble->getLargo());
             $result->bindValue('ancho', $mueble->getAncho());
-            $result->bindValue('categoria_id', $mueble->getCategoria()->getId());
             $result->bindValue("mueble_id", $mueble->getMuebleId());
 
             if (!$result->execute()) {
@@ -142,9 +140,6 @@ class MuebleDataMapper
 
             if ($success) {
                 $stmt->commit();
-                if ($result->rowCount() < 1) {
-                    $success = false;
-                }
             } else {
                 $stmt->rollBack();
             }
