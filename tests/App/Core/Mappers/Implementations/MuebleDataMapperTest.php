@@ -13,7 +13,7 @@ class MuebleDataMapperTest extends TestCase
     public function testFindByID()
     {
         $mapper = new MuebleDataMapper();
-        $muebleId = 4;
+        $muebleId = 8;
         $mueble = $mapper->findByID($muebleId);
         $this->assertInstanceOf(Mueble::class, $mueble);
     }
@@ -33,13 +33,6 @@ class MuebleDataMapperTest extends TestCase
         $this->assertIsArray($mueble);
     }
 
-    public function testFindAllNull()
-    {
-        $mapper = new MuebleDataMapper();
-        $mueble = $mapper->findAll();
-        $this->assertc($mueble);
-    }
-
     public function testInsert()
     {
         $mapper = new MuebleDataMapper();
@@ -55,18 +48,34 @@ class MuebleDataMapperTest extends TestCase
         $this->assertTrue($result);
     }
 
+    public function testInsertException()
+    {
+        $mapper = new MuebleDataMapper();
+        $mueble = new Mueble();
+        $mueble->setNombre('Silla Moderna');
+        $mueble->setDescripcion('Silla de diseño moderno');
+        $mueble->setPrecio('Eder');
+        $mueble->setStock(10);
+        $mueble->setLargo(1.5);
+        $mueble->setAncho(1.5);
+        $mueble->setMedida($mueble->getAncho() * $mueble->getLargo());
+        $result = $mapper->insert($mueble);
+        $this->expectException($result);
+    }
+
+
     public function testUpdate()
     {
         $mapper = new MuebleDataMapper();
-        $muebleId = 4;
+        $muebleId = 6;
         $mueble = $mapper->findByID($muebleId);
 
-        $mueble->setNombre('Mesa de Comedor');
-        $mueble->setDescripcion('Mesa de comedor para 6 personas');
-        $mueble->setPrecio(200.00);
-        $mueble->setStock(8);
-        $mueble->setLargo(1.5);
-        $mueble->setAncho(2.5);
+        $mueble->setNombre($mueble->getNombre());
+        $mueble->setDescripcion($mueble->getDescripcion());
+        $mueble->setPrecio(49.00);
+        $mueble->setStock($mueble->getStock());
+        $mueble->setLargo($mueble->getLargo());
+        $mueble->setAncho($mueble->getAncho());
         $mueble->setMedida($mueble->getLargo() * $mueble->getAncho());
         $result = $mapper->update($mueble);
         $this->assertTrue($result);
@@ -75,7 +84,7 @@ class MuebleDataMapperTest extends TestCase
     public function testDelete()
     {
         $mapper = new MuebleDataMapper();
-        $muebleId = 4;
+        $muebleId = 7;
         $mueble = $mapper->findByID($muebleId);
         $result = $mapper->delete($mueble->getMuebleId());
         $this->assertTrue($result);

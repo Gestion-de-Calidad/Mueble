@@ -14,27 +14,6 @@ class Mueble
     private ?float $medida;
 
     /**
-     * Mueble constructor.
-     * @param int $mueble_id
-     * @param string $nombre
-     * @param string|null $descripcion
-     * @param float $precio
-     * @param int $stock
-     * @param float $largo
-     * @param float $ancho
-     */
-    public function __construct(string $nombre, ?string $descripcion, float $precio, int $stock, float $largo, float $ancho)
-    {
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->precio = $precio;
-        $this->stock = $stock;
-        $this->largo = $largo;
-        $this->ancho = $ancho;
-    }
-
-
-    /**
      * @return int
      */
     public function getMuebleId(): int
@@ -97,6 +76,7 @@ class Mueble
     {
         $this->precio = $precio;
     }
+
 
     /**
      * @return int
