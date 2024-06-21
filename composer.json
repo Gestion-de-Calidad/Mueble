@@ -11,7 +11,7 @@
             "Models\\": "src/core/models",
             "Services\\": "src/core/services/implementations"
         }
-    }
+    },
     "authors": [
         {
             "name": "Santiago Farinola",
