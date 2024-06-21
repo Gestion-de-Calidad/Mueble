@@ -11,12 +11,7 @@
             "Models\\": "src/core/models",
             "Services\\": "src/core/services/implementations"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "TestMapper\\": "tests/App/Core/Mappers"
-        }
-    },
+    }
     "authors": [
         {
             "name": "Santiago Farinola",
