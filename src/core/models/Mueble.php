@@ -5,21 +5,13 @@ namespace Models;
 class Mueble
 {
     private int $mueble_id;
-    private ?string $nombre;
+    private string $nombre;
     private ?string $descripcion;
     private float $precio;
     private int $stock;
-    private float $medida;
     private float $largo;
     private float $ancho;
-    //private ?Categoria $categoria;
-
-    /**
-     * Mueble constructor.
-     */
-    public function __construct()
-    {
-    }
+    private ?float $medida;
 
     /**
      * @return int
@@ -85,6 +77,7 @@ class Mueble
         $this->precio = $precio;
     }
 
+
     /**
      * @return int
      */
@@ -101,21 +94,6 @@ class Mueble
         $this->stock = $stock;
     }
 
-    /**
-     * @return float
-     */
-    public function getMedida(): float
-    {
-        return $this->medida;
-    }
-
-    /**
-     * @param float $medida
-     */
-    public function setMedida(float $medida): void
-    {
-        $this->medida = $medida;
-    }
 
     /**
      * @return float
@@ -149,21 +127,21 @@ class Mueble
         $this->ancho = $ancho;
     }
 
-/*    /**
-     * @return Categoria|null
+    /**
+     * @return float|null
      */
-/*    public function getCategoria(): ?Categoria
+    public function getMedida(): ?float
     {
-        return $this->categoria;
+        return $this->medida;
     }
-*/
-/*    /**
-     * @param Categoria|null $categoria
+
+    /**
+     * @param float|null  $medida
      */
-/*    public function setCategoria(?Categoria $categoria): void
+    public function setMedida(?float $medida): void
     {
-        $this->categoria = $categoria;
+        $this->medida = $medida;
     }
-*/
+
 
 }

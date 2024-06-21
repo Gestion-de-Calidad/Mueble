@@ -3,6 +3,7 @@
 namespace Mappers;
 
 use PDO;
+use PDOException;
 use DataBase\BDConection;
 use Models\Mueble;
 use Exceptions\DatabaseException;
@@ -17,7 +18,7 @@ class MuebleDataMapper
         $this->conection = new BDConection();
     }
 
-    public function findByID(int $muebleId): Mueble
+    public function findByID(int $muebleId): ?Mueble
     {
         try {
             $stmt = $this->conection->getInstancia();
@@ -27,11 +28,16 @@ class MuebleDataMapper
             $result->execute();
             $result->setFetchMode(PDO::FETCH_CLASS, Mueble::class);
             $mueble = $result->fetch();
-            return $mueble;
+
+            if(!$mueble){
+                return null;
+            }
 
         } catch (PDOException $e) {
             throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
         }
+
+        return $mueble;
     }
 
     public function findAll(): array
@@ -52,12 +58,11 @@ class MuebleDataMapper
     public function insert(Mueble $mueble): bool
     {
         try {
-            $success = true;
 
             $stmt = $this->conection->getInstancia();
             $stmt->beginTransaction();
 
-            $query = "INSERT INTO MUEBLES (nombre, descripcion, precio, stock, medida, largo, ancho, categoria_id) VALUES (:nombre, :descripcion, :precio, :stock, :medida, :largo, :ancho, :categoria_id)";
+            $query = "INSERT INTO MUEBLES (nombre, descripcion, precio, stock, medida, largo, ancho) VALUES (:nombre, :descripcion, :precio, :stock, :medida, :largo, :ancho)";
             $result = $stmt->prepare($query);
             $result->bindValue('nombre', $mueble->getNombre());
             $result->bindValue('descripcion', $mueble->getDescripcion());
@@ -66,33 +71,28 @@ class MuebleDataMapper
             $result->bindValue('medida', $mueble->getMedida());
             $result->bindValue('largo', $mueble->getLargo());
             $result->bindValue('ancho', $mueble->getAncho());
-            $result->bindValue('categoria_id', $mueble->getCategoria()->getId());
 
-            if (!$result->execute()) {
-                $success = false;
-            }
-
-            if ($success) {
+            if ($result->execute()) {
                 $stmt->commit();
-            } else {
-                $stmt->rollBack();
             }
-            return $success;
 
         } catch (PDOException $e) {
+            $stmt->rollBack();
+            return false;
             throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
         }
+
+        return true;
     }
 
     public function update(Mueble $mueble): bool
     {
         try {
-            $success = true;
 
             $stmt = $this->conection->getInstancia();
             $stmt->beginTransaction();
 
-            $query = "UPDATE MUEBLES SET nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, medida = :medida, largo = :largo, ancho = :ancho , categoria_id = :categoria_id  WHERE mueble_id = :mueble_id";
+            $query = "UPDATE MUEBLES SET nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, medida = :medida, largo = :largo, ancho = :ancho  WHERE mueble_id = :mueble_id";
             $result = $stmt->prepare($query);
             $result->bindValue('nombre', $mueble->getNombre());
             $result->bindValue('descripcion', $mueble->getDescripcion());
@@ -101,32 +101,24 @@ class MuebleDataMapper
             $result->bindValue('medida', $mueble->getMedida());
             $result->bindValue('largo', $mueble->getLargo());
             $result->bindValue('ancho', $mueble->getAncho());
-            $result->bindValue('categoria_id', $mueble->getCategoria()->getId());
             $result->bindValue("mueble_id", $mueble->getMuebleId());
 
-            if (!$result->execute()) {
-                $success = false;
-            }
 
-            if ($success) {
+            if ($result->execute()) {
                 $stmt->commit();
-                if ($result->rowCount() < 1) {
-                    $success = false;
-                }
-            } else {
-                $stmt->rollBack();
             }
-            return $success;
 
         } catch (PDOException $e) {
+            $stmt->rollBack();
+            return false;
             throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
         }
+        return true;
     }
 
     public function delete(int $mueble_id): bool
     {
         try {
-            $success = true;
 
             $stmt = $this->conection->getInstancia();
             $stmt->beginTransaction();
@@ -136,23 +128,16 @@ class MuebleDataMapper
             $result->bindParam('mueble_id', $mueble_id);
             $data = $result->execute();
 
-            if (!$result->execute()) {
-                $success = false;
-            }
-
-            if ($success) {
+            if ($result->execute()) {
                 $stmt->commit();
-                if ($result->rowCount() < 1) {
-                    $success = false;
-                }
-            } else {
-                $stmt->rollBack();
             }
-
-            return $success;
 
         } catch (PDOException $e) {
+            $stmt->rollBack();
+            return false;
             throw new DatabaseException("Error al ejecutar la consulta: " . $e->getMessage());
         }
+
+        return true;
     }
 }
