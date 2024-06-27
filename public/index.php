@@ -1,31 +1,25 @@
 <?php
-#$droot = $_SERVER['DOCUMENT_ROOT'];
-
 require_once '../vendor/autoload.php';
 use Services\MuebleServiceImpl;
 
 $muebleService = new MuebleServiceImpl();
 $registros = $muebleService->getAllMuebles();
-
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <title>Muebles</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Archivos de estilo -->
     <link href="../lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="../lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="../lib/fontAwesome/css/all.min.css" rel="stylesheet">
     <link href="../lib/site/site.css" rel="stylesheet">
-    <link href="../lib/site/site.css" rel="stylesheet">
-    <!-- Archivos JavaScript -->
     <script src="../lib/JQuery/jquery.min.js"></script>
     <script src="../lib/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="../lib/bootstrap/bootstrap.min.js"></script>
     <script src="../lib/fontAwesome/js/all.min.js"></script>
 </head>
+<body>
 
 <div id="contenido" class="container-fluid">
     <?php if (isset($_SESSION['message'])): ?>
@@ -36,12 +30,12 @@ $registros = $muebleService->getAllMuebles();
             </button>
         </div>
         <?php
-        // Eliminar el mensaje de la sesión
         unset($_SESSION['message']);
         unset($_SESSION['message_type']);
         ?>
     <?php endif; ?>
-    <div id="seccionSuperior">
+
+    <div>
         <div class="form-row mt-2">
             <div class="col text-left">
                 <h1>Bienvenidos a Muebles de Calidad</h1>
@@ -55,23 +49,14 @@ $registros = $muebleService->getAllMuebles();
                         Muebles Disponibles
                     </div>
                     <div class="col text-right">
-                        <div id="card-body-expandir" title="Expandir/Contraer formulario"></div>
+                        <button class="btn btn-outline-light" data-toggle="modal" onclick="window.location.assign('<?= '../src/views/muebles/create.php' ?>')">
+                            Agregar Mueble
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="card-body" id="card-body-busqueda">
-                <div class="form-row">
-                    <div class="col text-right">
-
-                        <button class="btn btn-outline-dark" data-toggle="modal"
-                                onclick="window.location.assign('<?= '../src/views/muebles/create.php' ?>')"
-                                data-bs-target="#exampleModal">
-                            Agregar Mueble
-                        </button>
-                    </div>
-                </div>
-                <br>
                 <?php if (!$registros) { ?>
                     <div class="form-row">
                         <div class="col text-center">
@@ -79,32 +64,31 @@ $registros = $muebleService->getAllMuebles();
                         </div>
                     </div>
                 <?php } else { ?>
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Medida</th>
-                            <th scope="col">Largo</th>
-                            <th scope="col">Ancho</th>
-                            <th scope="col">Opciones</th>
+                            <th class='text-center' scope="col">Nombre</th>
+                            <th class='text-center' scope="col">Descripción</th>
+                            <th class='text-center' scope="col">Medida</th>
+                            <th class='text-center' scope="col">Largo</th>
+                            <th class='text-center' scope="col">Ancho</th>
+                            <th class='text-center' scope="col">Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($registros as $mueble) { ?>
                             <tr>
-                                <td class="table-light fw-light lh-1 text-center">
+                                <td class="table-light text-center">
                                     <?php echo $mueble->getNombre(); ?></td>
-                                <td class="table-light fw-light lh-1 text-center text-break">
+                                <td class="table-light text-center">
                                     <?php echo $mueble->getDescripcion(); ?></td>
-                                <td class="table-light  fw-light lh-1 text-center text-break">
+                                <td class="table-light text-center">
                                     <?php echo $mueble->getMedida(); ?></td>
-                                <td class="table-light  fw-light lh-1 text-center text-break">
+                                <td class="table-light text-center">
                                     <?php echo $mueble->getLargo(); ?></td>
-                                <td class="table-light fw-light lh-1 text-center text-break text-capitalize">
+                                <td class="table-light text-center">
                                     <?php echo $mueble->getAncho(); ?></td>
-
-                                <td class="table-light fw-light">
+                                <td class="table-light text-center">
                                     <button type="button" class='btn btn-outline-info btn-detalle'
                                             onclick="window.location.assign('<?= '../src/views/muebles/edit.php?id=' . $mueble->getMuebleId() ?>')">
                                         <i class='far fa-edit'></i>
@@ -123,3 +107,14 @@ $registros = $muebleService->getAllMuebles();
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDelete(url) {
+        if (confirm("¿Estás seguro de que deseas eliminar este mueble?")) {
+            window.location.href = url;
+        }
+    }
+</script>
+
+</body>
+</html>

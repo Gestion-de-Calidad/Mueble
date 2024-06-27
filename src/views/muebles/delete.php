@@ -1,7 +1,8 @@
 <?php
 
-
 session_start();
+require_once '../../../vendor/autoload.php';
+
 use Services\MuebleServiceImpl;
 
 define('REDIRECT_URL', '../../../public/index.php');
@@ -44,7 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Eliminar Mueble</title>
     <!-- Archivos de estilo -->
     <link href="../../../lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="../../../lib/fontAwesome/css/all.min.css" rel="stylesheet">
+    <link href="../../../lib/site/site.css" rel="stylesheet">
     <link href="../../../lib/site/site.css" rel="stylesheet">
     <!-- Archivos JavaScript -->
     <script src="../../../lib/JQuery/jquery.min.js"></script>
@@ -58,13 +61,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header bg-danger text-white">
-                    <h3 class="card-title">Confirmar Eliminación</h3>
+                    <div class="form-row">
+                        <div class="col">
+                            Eliminar Mueble
+                        </div>
+                        <div class="col text-right">
+                            <div id="card-body-expandir" title="Expandir/Contraer formulario"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <p>¿Estás seguro de que deseas eliminar este mueble?</p>
                     <form method="POST">
-                        <button type="submit" class="btn btn-outline-dark">Continuar</button>
-                        <a href="<?php echo REDIRECT_URL; ?>" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-outline-dark"
+                                onclick="confirmDelete('<?= '../../../public/index.php' ?>')">
+                            Eliminar</button>
+                        <button type="button" class='btn btn-outline-secondary'
+                                onclick="window.location.assign('<?= '../../../public/index.php' ?>')">
+
+                        <i class='far fa-trash-alt'></i>
+                            Cancelar
+                        </button>
                     </form>
                 </div>
             </div>
@@ -86,6 +103,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['message_type']);
     ?>
     <?php endif;?>
+
+    function confirmDelete(url) {
+        if (confirm("¿Estás seguro de que deseas eliminar este mueble?")) {
+            window.location.href = url;
+        }
+    }
+
 </script>
 </body>
 </html>

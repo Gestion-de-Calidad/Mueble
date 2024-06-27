@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+require_once '../../../vendor/autoload.php';
+
 use Services\MuebleServiceImpl;
 use Models\Mueble;
 
@@ -44,7 +46,9 @@ function updateMuebleFromPost($mueble)
     <title>Agregar Mueble</title>
     <!-- Archivos de estilo -->
     <link href="../../../lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../lib/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="../../../lib/fontAwesome/css/all.min.css" rel="stylesheet">
+    <link href="../../../lib/site/site.css" rel="stylesheet">
     <link href="../../../lib/site/site.css" rel="stylesheet">
     <!-- Archivos JavaScript -->
     <script src="../../../lib/JQuery/jquery.min.js"></script>
@@ -54,13 +58,23 @@ function updateMuebleFromPost($mueble)
 
 </head>
 <body>
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card">
+
+            <div class="card border-dark mt-2 mb-2">
                 <div class="card-header bg-dark text-white">
-                    <h3 class="card-title">Agregar Mueble</h3>
+                    <div class="form-row">
+                        <div class="col">
+                            Agregar Mueble
+                        </div>
+                        <div class="col text-right">
+                            <div id="card-body-expandir" title="Expandir/Contraer formulario"></div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card-body">
                     <form method="POST" action="create.php">
                         <div class="form-group">
@@ -80,10 +94,10 @@ function updateMuebleFromPost($mueble)
                             <label for="stock">Stock</label>
                             <input type="number" class="form-control" id="stock" name="stock" required>
                         </div>
-                       <!-- <div class="form-group">
-                            <label for="medida">Medida</label>
-                            <input type="number" step="0.01" class="form-control" id="medida" name="medida" required>
-                        </div>-->
+                        <!-- <div class="form-group">
+                             <label for="medida">Medida</label>
+                             <input type="number" step="0.01" class="form-control" id="medida" name="medida" required>
+                         </div>-->
                         <div class="form-group">
                             <label for="largo">Largo</label>
                             <input type="number" step="0.01" class="form-control" id="largo" name="largo" required>
@@ -93,7 +107,11 @@ function updateMuebleFromPost($mueble)
                             <input type="number" step="0.01" class="form-control" id="ancho" name="ancho" required>
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Guardar</button>
-                        <a href="<?php echo REDIRECT_URL; ?>" class="btn btn-secondary">Cancelar</a>
+                        <button type="button" class='btn btn-outline-secondary'
+                                onclick="confirmCancel('<?= '../../../public/index.php' ?>')">
+                            <i class='far fa-trash-alt'></i>
+                            Cancelar
+                        </button>
                     </form>
                 </div>
             </div>
@@ -113,6 +131,12 @@ function updateMuebleFromPost($mueble)
     unset($_SESSION['message_type']);
     ?>
     <?php endif; ?>
+
+    function confirmCancel(url) {
+        if (confirm("¿Estás seguro de que deseas salir?, perdera los cambios realizados")) {
+            window.location.href = url;
+        }
+    }
 </script>
 
 </body>

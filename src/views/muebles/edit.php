@@ -1,16 +1,21 @@
 <?php
 
 session_start();
+require_once '../../../vendor/autoload.php';
+
 use Services\MuebleServiceImpl;
+use Models\Mueble;
+
+$muebleService = new MuebleServiceImpl();
 
 define('REDIRECT_URL', '../../../public/index.php');
-$muebleService = new MuebleServiceImpl();
 
 // Redireccionar si no se proporciona ID
 if (!isset($_GET['id'])) {
     header('Location: ' . REDIRECT_URL);
     exit();
 }
+
 // Busca el id del mueble si existe
 $mueble = $muebleService->getMuebleById((int)$_GET['id']);
 
@@ -31,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['message_type'] = "error";
     }
 }
-
 
 // Actualizar objeto Mueble a partir de datos POST
 function updateMueblePost($mueble)
@@ -67,9 +71,16 @@ function updateMueblePost($mueble)
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card">
+            <div class="card border-dark mt-2 mb-2">
                 <div class="card-header bg-info text-white">
-                    <h3 class="card-title">Editar Mueble</h3>
+                    <div class="form-row">
+                        <div class="col">
+                            Editar Mueble
+                        </div>
+                        <div class="col text-right">
+                            <div id="card-body-expandir" title="Expandir/Contraer formulario"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="edit.php?id=<?php echo $mueble->getMuebleId(); ?>">
@@ -109,7 +120,11 @@ function updateMueblePost($mueble)
                                    value="<?php echo $mueble->getAncho(); ?>" required>
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Guardar</button>
-                        <a href="<?php echo REDIRECT_URL; ?>" class="btn btn-secondary">Cancelar</a>
+                        <button type="button" class='btn btn-outline-secondary'
+                                onclick="confirmCancel('<?= '../../../public/index.php'?>')">
+                            <i class='far fa-trash-alt'></i>
+                            Cancelar
+                        </button>
                     </form>
                 </div>
             </div>
@@ -128,6 +143,14 @@ function updateMueblePost($mueble)
     unset($_SESSION['message_type']);
     ?>
     <?php endif; ?>
+
+    function confirmCancel(url) {
+        if (confirm("¿Estás seguro de que deseas salir?, perdera los cambios realizados")) {
+            window.location.href = url;
+        }
+    }
+
 </script>
+
 </body>
 </html>
